@@ -1,3 +1,6 @@
+import random
+
+
 def sum(items):
     if len(items) == 0:
         return 0
@@ -69,3 +72,19 @@ assert binary_search(items, low, high, 2) == 1
 assert binary_search(items, low, high, 2) == 1
 assert binary_search(items, low, high, 7) == 5
 assert binary_search(items, low, high, -1) == None
+
+
+def quicksort(items):
+    if len(items) < 2:
+        return items
+    else:
+        i = random.randint(0, len(items) - 1)
+        pivot = items.pop(i)
+        less = [i for i in items if i <= pivot]
+        greater = [i for i in items if i > pivot]
+        return quicksort(less) + [pivot] + quicksort(greater)
+
+
+assert quicksort([]) == []
+assert quicksort([1]) == [1]
+assert quicksort([3, 5, 2, 1, 8]) == [1, 2, 3, 5, 8]
